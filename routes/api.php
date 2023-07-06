@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Notices\UpdateNoticeController;
 use App\Http\Controllers\Api\Tasks\DeleteTaskController;
 use App\Http\Controllers\Api\Tasks\UpdateStateController;
 use App\Http\Controllers\Api\Users\DeleteUserController;
@@ -45,20 +46,7 @@ Route::get('1.0/notices', function () {
 
 // PUT => Actualizar un recurso
 
-Route::put('1.0/notices/{noticeId}', function (int $noticeId, Request $request) {
-
-    $newTitle = $request->get('title');
-    $newContent = $request->get('content');
-
-    $notice = Notice::find($noticeId);
-    $notice->title = $newTitle;
-    $notice->content = $newContent;
-    $notice->save();
-
-    return response()->json([
-        'message' => 'Aviso actualizado'
-    ]);
-});
+Route::put('1.0/notices/{noticeId}', [UpdateNoticeController::class, 'updateNotice']);
 
 // DELETE => Eliminar un recurso
 Route::delete('1.0/notices/{noticeId}', function (int $noticeId) {
