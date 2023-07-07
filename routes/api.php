@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Contacts\UpdateContactController;
 use App\Http\Controllers\Api\Notices\UpdateNoticeController;
 use App\Http\Controllers\Api\Tasks\DeleteTaskController;
 use App\Http\Controllers\Api\Tasks\UpdateStateController;
@@ -80,20 +81,7 @@ Route::post('1.0/contacts', function (Request $request) {
 
 // PUT => Actualizar un Contacto
 
-Route::put('1.0/contacts/{contactId}', function (int $contactId, Request $request) {
-
-    $newName = $request->get('name');
-    $newCellPhone = $request->get('cellPhone');
-
-    $contacts = Contact::find($contactId);
-    $contacts->title = $newName;
-    $contacts->content = $newCellPhone;
-    $contacts->save();
-
-    return response()->json([
-        'message' => 'Aviso actualizado'
-    ]);
-});
+Route::put('1.0/contacts/{contactId}', [UpdateContactController::class, 'updateContact']);
 
 /*____________________________________________________________________
 TASKS
