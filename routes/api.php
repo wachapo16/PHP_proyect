@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\Contacts\CreateContactController;
 use App\Http\Controllers\Api\Contacts\UpdateContactController;
+use App\Http\Controllers\Api\Notices\CreateNoticeController;
 use App\Http\Controllers\Api\Notices\UpdateNoticeController;
 use App\Http\Controllers\Api\Tasks\DeleteTaskController;
 use App\Http\Controllers\Api\Tasks\UpdateStateController;
@@ -27,17 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 // Endpoint para crear un aviso
-Route::post('1.0/notices', function (Request $request) {
-    $title = $request->get('title');
-    $content = $request->get('content');
-    Notice::create([
-        'title' => $title,
-        'content' => $content
-    ]);
-    return response()->json([
-        'message' => 'Aviso creado.'
-    ]);
-});
+Route::post('1.0/notices', [CreateNoticeController::class, 'createNotice'] );
 
 // Endpoint para obtener todos los avisos
 Route::get('1.0/notices', function () {
@@ -66,18 +58,7 @@ Route::get('1.0/contacts', function () {
 });
 
 // Endpoint para crear un Contacto
-Route::post('1.0/contacts', function (Request $request) {
-    $name = $request->get('name');
-    $cellPhone = $request->get('cellphone');
-
-    Contact::create([
-        'name' => $name,
-        'cellphone' => $cellPhone
-    ]);
-    return response()->json([
-        'message' => 'Contacto creado.'
-    ]);
-});
+Route::post('1.0/contacts', [CreateContactController::class, 'createContact']);
 
 // PUT => Actualizar un Contacto
 
