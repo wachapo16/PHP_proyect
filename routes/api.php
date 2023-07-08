@@ -1,16 +1,16 @@
 <?php
 
 use App\Http\Controllers\Api\Contacts\CreateContactController;
+use App\Http\Controllers\Api\Contacts\DeleteContactController;
 use App\Http\Controllers\Api\Contacts\GetAllContactController;
 use App\Http\Controllers\Api\Contacts\UpdateContactController;
 use App\Http\Controllers\Api\Notices\CreateNoticeController;
+use App\Http\Controllers\Api\Notices\DeleteNoticeController;
 use App\Http\Controllers\Api\Notices\GetAllNoticeController;
 use App\Http\Controllers\Api\Notices\UpdateNoticeController;
 use App\Http\Controllers\Api\Tasks\DeleteTaskController;
 use App\Http\Controllers\Api\Tasks\UpdateStateController;
 use App\Http\Controllers\Api\Users\DeleteUserController;
-use App\Models\Contact;
-use App\Models\Notice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,14 +35,7 @@ ____________________________________________________________________*/
 Route::post('1.0/notices', [CreateNoticeController::class, 'createNotice'] );
 Route::get('1.0/notices', [GetAllNoticeController::class, 'getNotice']);
 Route::put('1.0/notices/{noticeId}', [UpdateNoticeController::class, 'updateNotice']);
-Route::delete('1.0/notices/{noticeId}', function (int $noticeId) {
-
-    Notice::destroy($noticeId);
-
-    return response()->json([
-        'message' => 'Aviso eliminado'
-    ]);
-});
+Route::delete('1.0/notices/{noticeId}', [DeleteNoticeController::class, 'deleteNotice']);
 
 /*____________________________________________________________________
 CONTACTS
@@ -50,7 +43,7 @@ ____________________________________________________________________*/
 Route::get('1.0/contacts', [GetAllContactController::class, 'getContact']);
 Route::post('1.0/contacts', [CreateContactController::class, 'createContact']);
 Route::put('1.0/contacts/{contactId}', [UpdateContactController::class, 'updateContact']);
-
+Route::delete('1.0/contacts/{contactId}', [DeleteContactController::class, 'deleteContact']);
 /*____________________________________________________________________
 TASKS
 ____________________________________________________________________*/
