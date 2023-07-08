@@ -11,15 +11,15 @@ class UpdateContactController extends Controller
     public function updateContact($contactId, Request $request)
     {
         $newName = $request->get('name');
-        $newCellPhone = $request->get('cellPhone');
+        $newCellPhone = $request->get('cellphone');
 
-        $contacts = Contact::find($contactId);
-        $contacts->name = $newName;
-        $contacts->cellphone = $newCellPhone;
-        $contacts->save();
+        $contact = Contact::find($contactId);
+        $contact->name = $newName;
+        $contact->cellphone = $newCellPhone;
+        $contact->save();
 
         return response()->json([
-            'message' => 'Aviso actualizado'
+            'message' => 'contacto actualizado'
         ]);
     }
 }
