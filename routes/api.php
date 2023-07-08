@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\Contacts\CreateContactController;
+use App\Http\Controllers\Api\Contacts\GetAllContactController;
 use App\Http\Controllers\Api\Contacts\UpdateContactController;
 use App\Http\Controllers\Api\Notices\CreateNoticeController;
+use App\Http\Controllers\Api\Notices\GetAllNoticeController;
 use App\Http\Controllers\Api\Notices\UpdateNoticeController;
 use App\Http\Controllers\Api\Tasks\DeleteTaskController;
 use App\Http\Controllers\Api\Tasks\UpdateStateController;
@@ -27,21 +29,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-// Endpoint para crear un aviso
+/*____________________________________________________________________
+NOTICES
+____________________________________________________________________*/
 Route::post('1.0/notices', [CreateNoticeController::class, 'createNotice'] );
-
-// Endpoint para obtener todos los avisos
-Route::get('1.0/notices', function () {
-    $notices = Notice::all(['id', 'title', 'content']);
-    return response()->json($notices);
-});
-
-// PUT => Actualizar un recurso
-
+Route::get('1.0/notices', [GetAllNoticeController::class, 'getNotice']);
 Route::put('1.0/notices/{noticeId}', [UpdateNoticeController::class, 'updateNotice']);
-
-// DELETE => Eliminar un recurso
 Route::delete('1.0/notices/{noticeId}', function (int $noticeId) {
 
     Notice::destroy($noticeId);
@@ -51,28 +44,18 @@ Route::delete('1.0/notices/{noticeId}', function (int $noticeId) {
     ]);
 });
 
-// Endpoint para obtener todos los contactos
-Route::get('1.0/contacts', function () {
-    $contacts = Contact::all(['id', 'name', 'cellphone']);
-    return response()->json($contacts);
-});
-
-// Endpoint para crear un Contacto
+/*____________________________________________________________________
+CONTACTS
+____________________________________________________________________*/
+Route::get('1.0/contacts', [GetAllContactController::class, 'getContact']);
 Route::post('1.0/contacts', [CreateContactController::class, 'createContact']);
-
-// PUT => Actualizar un Contacto
-
 Route::put('1.0/contacts/{contactId}', [UpdateContactController::class, 'updateContact']);
 
 /*____________________________________________________________________
 TASKS
-_____________________________________________________________________*/
-// DELETE => Eliminar una tarea
+____________________________________________________________________*/
 Route::delete('1.0/tasks/{taskId}', [DeleteTaskController::class, 'deleteTask']);
-
-//PUT => Actualizar estado de la tarea:
-/*Por hacer --> En progreso
-En progreso --> Finalizada*/
+//PUT => Actualizar estado de la tarea: Por hacer --> En progreso En progreso --> Finalizada
 Route::put('1.0/tasks/{taskId}', [UpdateStateController::class, 'updateState']);
 
 /*____________________________________________________________________
