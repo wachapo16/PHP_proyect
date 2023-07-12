@@ -29,29 +29,31 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/*____________________________________________________________________
-NOTICES
-____________________________________________________________________*/
+
+/*---------------------------------------------------------------------------
+Notices
+-----------------------------------------------------------------------------*/
 Route::post('1.0/notices', [CreateNoticeController::class, 'createNotice'] );
 Route::get('1.0/notices', [GetAllNoticeController::class, 'getNotice']);
 Route::put('1.0/notices/{noticeId}', [UpdateNoticeController::class, 'updateNotice']);
 Route::delete('1.0/notices/{noticeId}', [DeleteNoticeController::class, 'deleteNotice']);
 
-/*____________________________________________________________________
-CONTACTS
-____________________________________________________________________*/
+/*---------------------------------------------------------------------------
+Contacts
+-----------------------------------------------------------------------------*/
 Route::get('1.0/contacts', [GetAllContactController::class, 'getContact']);
 Route::post('1.0/contacts', [CreateContactController::class, 'createContact']);
 Route::put('1.0/contacts/{contactId}', [UpdateContactController::class, 'updateContact']);
 Route::delete('1.0/contacts/{contactId}', [DeleteContactController::class, 'deleteContact']);
-/*____________________________________________________________________
-TASKS
-____________________________________________________________________*/
+
+/*---------------------------------------------------------------------------
+Tasks
+-----------------------------------------------------------------------------*/
 Route::delete('1.0/tasks/{taskId}', [DeleteTaskController::class, 'deleteTask']);
 //PUT => Actualizar estado de la tarea: Por hacer --> En progreso En progreso --> Finalizada
 Route::put('1.0/tasks/{taskId}', [UpdateStateController::class, 'updateState']);
 
-/*____________________________________________________________________
-USERS
-_____________________________________________________________________*/
+/*---------------------------------------------------------------------------
+Users
+-----------------------------------------------------------------------------*/
 Route::delete('1.0/users/{userId}', [DeleteUserController::class, 'deleteUser']);

@@ -13,12 +13,16 @@ class EloquentContactRepository
         return Contact::all(['id', 'name', 'cellPhone']);
     }
 
-    public function create(array $attributes): Contact
-    {
-        return Contact::create($attributes);
+    public function create(string $name, string $cellPhone):Contact{
+        return Contact::create([
+            'name'=> $name,
+            'cellPhone'=> $cellPhone
+        ]);
+
+        return Contact::create();
     }
 
-    public function findById(int $contactId): Contact 
+    public function findById(int $contactId): Contact
     {
         return Contact::findOrFail($contactId);
     }

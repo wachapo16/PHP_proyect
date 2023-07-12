@@ -13,10 +13,12 @@ class UpdateNoticeController extends Controller
     {
         $newTitle = $request->get('title');
         $newContent = $request->get('content');
+
         $notice = Notice::find($noticeId);
         $notice->title = $newTitle;
         $notice->content = $newContent;
         $notice->save();
+
         return redirect('notices');
     }
 }
