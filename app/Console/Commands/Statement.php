@@ -6,16 +6,14 @@ use Illuminate\Console\Command;
 
 class Statement extends Command
 {
-    
+
     protected $signature = 'app:statement {personIncome}';
-
-
     protected $description = 'Calculadora de renta';
 
     public function handle()
     {
         $personIncome = $this->argument('personIncome');
-        
+
         if ($personIncome < 1160000) {
             $porcentage = 5;
         }elseif ($personIncome >= 1160000 && $personIncome < 2320000) {
@@ -28,7 +26,7 @@ class Statement extends Command
             $porcentage = 45;
         }*/else {
             $porcentage = 45;
-        }        
+        }
 
         $tax = $personIncome * ($porcentage / 100);
         $netIncome = $personIncome - $tax;
@@ -36,6 +34,6 @@ class Statement extends Command
         $this->info("La persona paga: $tax de impuesto");
         $this->info("Precio Neto es: $netIncome");
     }
-    
+
 }
 

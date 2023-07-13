@@ -33,10 +33,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /*---------------------------------------------------------------------------
 Notices
 -----------------------------------------------------------------------------*/
-Route::post('1.0/notices', [CreateNoticeController::class, 'createNotice'] );
+Route::post('1.0/notices', [CreateNoticeController::class, 'createNotice']);
 Route::get('1.0/notices', [GetAllNoticeController::class, 'getNotice']);
 Route::put('1.0/notices/{noticeId}', [UpdateNoticeController::class, 'updateNotice']);
 Route::delete('1.0/notices/{noticeId}', [DeleteNoticeController::class, 'deleteNotice']);
+
 
 /*---------------------------------------------------------------------------
 Contacts

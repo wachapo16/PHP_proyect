@@ -21,3 +21,11 @@ class CreateNoticeController extends Controller
         ]);
     }
 }
+
+//controlador -> ruta}
+
+// get -> trae o lee la información
+// post -> crea
+// update -> actalizar
+// delete -> elimiar
+
