@@ -67,13 +67,13 @@ class SalaryTaxCalculateUseCaseTest extends TestCase
     {
         // Dado
         // Una persona tiene un salario mayor a 5800000
-        $salary = 7000000;
+        $salary = 7100000;
 
         // Cuando
         $salaryTaxCalculate = new SalaryTaxCalculate();
         $result = $salaryTaxCalculate->taxCalculate($salary);
 
         // Debería pasar
-        $this->assertSame(3150000, $result);
+        $this->assertSame(3195000, $result);
     }
 }
