@@ -34,12 +34,22 @@ Comando para eliminar un producto app/Console/Commands/Products/DeleteProductCom
 
 Creación de cuenta
 Visualización del formulario (o la vista) app/Http/Controllers/Web/Auth/RegisterController.php
+
 La creación de la cuenta luego de diligenciar el formulario de la vista app/Http/Controllers/Web/Auth/CreateAccountController.php
+
 Inicio de Sesión
+
 Visualización del formulario (o vista) app/Http/Controllers/Web/Auth/LoginController.php
+
 La autenticación, luego de diligenciar el formulario app/Http/Controllers/Web/Auth/AuthenticationController.php
+
 Cerrar sesión
+
 El cerrar sesión app/Http/Controllers/Web/Auth/LogoutController.php
+
 Home app/Http/Controllers/Web/HomeController.php
+
 Visualización de usuario logueado
+
 Visualización de productos con su nombre, imagen, precio y botón para seleccionar.
+
