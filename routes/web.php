@@ -1,13 +1,19 @@
 <?php
 
+use App\Http\Controllers\Web\Auth\AuthenticationController;
+use App\Http\Controllers\web\Auth\LoginController;
 use App\Http\Controllers\Web\Auth\CreateAccountController;
+use App\Http\Controllers\Web\Auth\LogoutController;
 use App\Http\Controllers\Web\Auth\RegisterController;
+use App\Http\Controllers\Web\Cart\AddProductController;
+use App\Http\Controllers\Web\Cart\RemoveProductController;
 use App\Http\Controllers\Web\Contacts\CreateContactController;
 use App\Http\Controllers\Web\Contacts\DeleteContactController;
 use App\Http\Controllers\Web\Contacts\EditContactController;
 use App\Http\Controllers\Web\Contacts\GetAllContactsController;
 use App\Http\Controllers\Web\Contacts\StoreContactController;
 use App\Http\Controllers\Web\Contacts\UpdateContactController;
+use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\Notices\CreateNoticeController;
 use App\Http\Controllers\Web\Notices\DeleteNoticeController;
 use App\Http\Controllers\Web\Notices\EditNoticeController;
@@ -22,6 +28,14 @@ use App\Http\Controllers\Web\Tasks\UpdateTaskController;
 use App\Http\Controllers\Web\Users\CreateUserController;
 use App\Http\Controllers\Web\Users\StoreUserController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::middleware('auth')->group(function () {
+    // Rutas protegidas que requieren autenticación
+});
 
 
 /*---------------------------------------------------------------------------
@@ -64,11 +78,16 @@ Auth
 -----------------------------------------------------------------------------*/
 Route::get('register', RegisterController::class);
 Route::post('register', CreateAccountController::class);
+Route::get('login', LoginController::class);
+Route::post('login', AuthenticationController::class);
+Route::post('logout', LogoutController::class);
+Route::get('home', HomeController::class);
 
-
-
-
-
+/*---------------------------------------------------------------------------
+Cart
+-----------------------------------------------------------------------------*/
+Route::post('cart/add', AddProductController::class);
+Route::delete('cart/remove', RemoveProductController::class);
 
 
 

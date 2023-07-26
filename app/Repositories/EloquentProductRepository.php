@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class EloquentProductRepository
 {
-    public function store(string $name, string $image, float $price):void
+    public function store(string $name, string $image, float $price): void
     {
         Product::create([
             'name' => $name,
@@ -15,9 +15,10 @@ class EloquentProductRepository
             'price' => $price
         ]);
     }
-    public function getAll(): Collection
+
+    public function getAll(array $columns): Collection
     {
-        return Product::all(['id', 'name', 'price']);
+        return Product::all($columns);
     }
 
     public function findById(int $productId): Product
@@ -34,16 +35,16 @@ class EloquentProductRepository
     }
 
     public function delete(int $productId): bool
-{
-    $product = Product::find($productId);
+    {
+        $product = Product::find($productId);
 
-    if ($product) {
-        $product->delete();
-        return true;
+        if ($product) {
+            $product->delete();
+            return true;
+        }
+
+        return false;
     }
-
-    return false;
-}
 
 
 }

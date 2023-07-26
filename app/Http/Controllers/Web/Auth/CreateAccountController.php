@@ -15,12 +15,11 @@ class CreateAccountController
         $password = $request->get('password');
         $userName = $request->get('user_name');
 
-        dd($name, $lastName, $email, $password, $userName);
-
         $userRepository = new EloquentUserRepository();
         $userRepository->store($name, $lastName, $email, $password, $userName);
 
-        //return redirect()->to('/login');
+        return redirect()->to('/login');
+
 
     }
 }

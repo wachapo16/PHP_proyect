@@ -17,7 +17,7 @@
         <br><br>
 
         <label for="last_name">Apellido</label>
-        <input type="text" name="last_name" id="last_name" placeholder="White" value="White">
+        <input type="text" name="last_name" id="last_name" placeholder="chavez" value="chavez">
         <br><br>
 
         <label for="email">Correo Electrónico</label>
@@ -29,7 +29,7 @@
         <br><br>
 
         <label for="user_name">Nombre de Usuario</label>
-        <input type="text" name="user_name" id="user_name" placeholder="walterwhite" value="walterwhite">
+        <input type="text" name="user_name" id="user_name" placeholder="wachapo" value="wachapo">
         <br><br>
 
         <button type="submit">Crear Cuenta</button>
