@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\Auth\CreateAccountController;
 use App\Http\Controllers\Web\Auth\LogoutController;
 use App\Http\Controllers\Web\Auth\RegisterController;
 use App\Http\Controllers\Web\Cart\AddProductController;
+use App\Http\Controllers\Web\Cart\CartSummaryController;
 use App\Http\Controllers\Web\Cart\RemoveProductController;
 use App\Http\Controllers\Web\Contacts\CreateContactController;
 use App\Http\Controllers\Web\Contacts\DeleteContactController;
@@ -88,7 +89,7 @@ Cart
 -----------------------------------------------------------------------------*/
 Route::post('cart/add', AddProductController::class);
 Route::delete('cart/remove', RemoveProductController::class);
-
+Route::get('cart-summary', CartSummaryController::class);
 
 
 

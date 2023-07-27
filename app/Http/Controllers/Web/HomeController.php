@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Cart;
+use App\Repositories\EloquentCartRepository;
 use App\Repositories\EloquentProductRepository;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,12 +17,14 @@ class HomeController
         $userId = Auth::id();
 
         $productRepository = new EloquentProductRepository();
+        $cartRepository = new EloquentCartRepository();
+
         $products = $productRepository->getAll(['id', 'name', 'price', 'image']);
 
-        $carts = Cart::where('user_id', '=', $userId)->get();
-        $quantityTotal = 0;
-        foreach ($carts as $cart) {
-            $quantityTotal += $cart->quantity;
+         $carts = $cartRepository->getUserCart($userId);
+         $quantityTotal = 0;
+         foreach ($carts as $cart) {
+             $quantityTotal += $cart->quantity;
         }
 
         return view('home', [

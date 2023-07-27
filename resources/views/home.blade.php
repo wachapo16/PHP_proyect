@@ -22,6 +22,10 @@
 
     <h4 style="text-align: center;">
         Llevas {{ $quantityTotal }} productos
+
+        <small style="display: block">
+            <a href="{{ url('cart-summary') }}" style="text-align: center;">Ir al carrito</a>
+        </small>
     </h4>
 
     <hr>
